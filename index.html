@@ -61,7 +61,7 @@
     .stat-card h3 { margin: 0; font-size: 28px; }
     .stat-card p { margin: 5px 0 0 0; font-size: 14px; font-weight: bold; }
     
-    .update-box { background-color: #e8f5e9; padding: 15px; border-radius: 8px; border: 1px solid #c8e6c9; text-align: center; margin-bottom: 25px; }
+    .update-box { background-color: #e8f5e9; padding: 15px; border-radius: 8px; border: 1px solid #c8e6c9; text-align: center; margin-bottom: 20px; }
   </style>
 </head>
 <body>
@@ -77,7 +77,7 @@
     <p id="loginMsg" style="color:red; font-weight:bold; margin-top:10px;"></p>
   </div>
 
-  <!-- ================= النظام الرئيسي (مخفي حتى تسجيل الدخول) ================= -->
+  <!-- ================= النظام الرئيسي ================= -->
   <div id="mainApp" class="container" style="display: none;">
     
     <div class="header-logo">
@@ -92,8 +92,17 @@
       <button id="tabStats" class="tab-btn" onclick="switchTab('stats')">الإحصائيات</button>
     </div>
 
-    <!-- 1. قسم البحث والفلاتر -->
+    <!-- 1. قسم البحث والفلاتر (تم إضافة زر المزامنة هنا أيضاً) -->
     <div id="searchSection" class="section active">
+      
+      <!-- مربع المزامنة السريع في تبويب البحث -->
+      <div class="update-box" style="padding: 10px; margin-bottom: 15px;">
+        <button id="updateDbBtnSearch" class="action-btn" onclick="triggerUpdate()" style="margin-top:0; background-color: #116b63; padding: 8px;">
+          <span id="btnTextSearch">🔄 مزامنة وتحديث الجداول فوراً</span>
+        </button>
+        <p id="updateStatusSearch" style="margin: 5px 0 0 0; font-size: 13px; font-weight:bold;"></p>
+      </div>
+
       <div class="form-group">
         <label>نوع البحث:</label>
         <select id="searchType" onchange="toggleSearchInputs()">
@@ -110,19 +119,14 @@
       <div id="dayInput" class="form-group" style="display: none;">
         <label>اليوم:</label>
         <select id="searchDay">
-          <option value="السبت">السبت</option>
-          <option value="الأحد">الأحد</option>
-          <option value="الإثنين">الإثنين</option>
-          <option value="الثلاثاء">الثلاثاء</option>
-          <option value="الأربعاء">الأربعاء</option>
-          <option value="الخميس">الخميس</option>
-          <option value="الجمعة">الجمعة</option>
+          <option value="السبت">السبت</option><option value="الأحد">الأحد</option><option value="الإثنين">الإثنين</option>
+          <option value="الثلاثاء">الثلاثاء</option><option value="الأربعاء">الأربعاء</option><option value="الخميس">الخميس</option><option value="الجمعة">الجمعة</option>
         </select>
       </div>
 
       <button class="action-btn" onclick="executeSearch()" id="searchBtn">🔍 استخراج الجدول</button>
       
-      <!-- مربع الفلتر السريع (يظهر بعد البحث) -->
+      <!-- مربع الفلتر السريع -->
       <input type="text" id="fastFilter" placeholder="تصفية سريعة بالاسم أو الوقت..." onkeyup="filterTable()">
       
       <div id="searchMessage" style="text-align:center; margin-top:10px; font-weight:bold;"></div>
@@ -158,10 +162,8 @@
       <div class="form-group">
         <label>اليوم:</label>
         <select id="logDay">
-          <option value="السبت">السبت</option>
-          <option value="الأحد">الأحد</option><option value="الإثنين">الإثنين</option>
-          <option value="الثلاثاء">الثلاثاء</option><option value="الأربعاء">الأربعاء</option>
-          <option value="الخميس">الخميس</option><option value="الجمعة">الجمعة</option>
+          <option value="السبت">السبت</option><option value="الأحد">الأحد</option><option value="الإثنين">الإثنين</option>
+          <option value="الثلاثاء">الثلاثاء</option><option value="الأربعاء">الأربعاء</option><option value="الخميس">الخميس</option><option value="الجمعة">الجمعة</option>
         </select>
       </div>
       <div class="form-group">
@@ -186,7 +188,7 @@
 
     <!-- 3. قسم الإحصائيات -->
     <div id="statsSection" class="section">
-      <h3 style="text-align:center; color:var(--primary-color);">لوحة معلومات الأكاديمية</h3>
+      <h3 style="text-align:center; color: var(--primary-color);">لوحة معلومات الأكاديمية</h3>
       <button class="action-btn" id="statsBtn" onclick="loadStats()">📊 جلب الإحصائيات الحديثة</button>
       <p id="statsMsg" style="text-align:center; font-weight:bold;"></p>
       
@@ -270,19 +272,32 @@
       document.getElementById('dayInput').style.display = (type === 'day') ? 'block' : 'none';
     }
 
-    async function loadTeachersData() {
+    // --- تسريع تحميل القوائم عبر التخزين المؤقت (Cache) ---
+    async function loadTeachersData(forceRefresh = false) {
       try {
-        const data = await apiCall('getInitData');
-        const dropdowns = document.getElementsByClassName('teacherDropdown');
-        for (let select of dropdowns) {
-          select.innerHTML = '<option value="">-- اختر المعلمة --</option>';
-          data.teachers.forEach(teacher => {
-            let option = document.createElement('option');
-            option.value = teacher; option.text = teacher;
-            select.appendChild(option);
-          });
+        let cachedTeachers = localStorage.getItem('cachedTeachers');
+        
+        if (cachedTeachers && !forceRefresh) {
+          populateDropdowns(JSON.parse(cachedTeachers));
+          return;
         }
+
+        const data = await apiCall('getInitData');
+        localStorage.setItem('cachedTeachers', JSON.stringify(data.teachers));
+        populateDropdowns(data.teachers);
       } catch (e) { console.error("خطأ: ", e); }
+    }
+
+    function populateDropdowns(teachersList) {
+      const dropdowns = document.getElementsByClassName('teacherDropdown');
+      for (let select of dropdowns) {
+        select.innerHTML = '<option value="">-- اختر المعلمة --</option>';
+        teachersList.forEach(teacher => {
+          let option = document.createElement('option');
+          option.value = teacher; option.text = teacher;
+          select.appendChild(option);
+        });
+      }
     }
 
     function filterTable() {
@@ -367,18 +382,25 @@
       }
     }
 
+    // دالة المزامنة المحدثة لتحديث الزرين معاً وتفريغ الـ Cache
     async function triggerUpdate() {
-      const btn = document.getElementById('updateDbBtn');
-      const statusText = document.getElementById('updateStatus');
-      btn.disabled = true; statusText.style.color = '#333'; statusText.innerText = '⏳ جاري المزامنة...';
+      const btns = [document.getElementById('updateDbBtn'), document.getElementById('updateDbBtnSearch')];
+      const statusTexts = [document.getElementById('updateStatus'), document.getElementById('updateStatusSearch')];
+      
+      btns.forEach(b => { if(b) b.disabled = true; });
+      statusTexts.forEach(s => { if(s) { s.style.color = '#333'; s.innerText = '⏳ جاري المزامنة...'; } });
+
       try {
         const res = await apiCall('updateMasterDB');
-        statusText.style.color = '#27ae60'; statusText.innerText = res.message; 
-        await loadTeachersData();
+        localStorage.removeItem('cachedTeachers'); // مسح الذاكرة المؤقتة لجلب الأسماء الجديدة
+        
+        statusTexts.forEach(s => { if(s) { s.style.color = '#27ae60'; s.innerText = res.message; } });
+        await loadTeachersData(true);
       } catch (err) {
-        statusText.style.color = '#c0392b'; statusText.innerText = '❌ خطأ: ' + err.message;
+        statusTexts.forEach(s => { if(s) { s.style.color = '#c0392b'; s.innerText = '❌ خطأ: ' + err.message; } });
       } finally {
-        btn.disabled = false; setTimeout(() => statusText.innerText = '', 5000);
+        btns.forEach(b => { if(b) b.disabled = false; });
+        setTimeout(() => { statusTexts.forEach(s => { if(s) s.innerText = ''; }); }, 5000);
       }
     }
 
