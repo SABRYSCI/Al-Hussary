@@ -2,7 +2,6 @@
 <html dir="rtl" lang="ar">
 <head>
   <meta charset="UTF-8">
-  <!-- سطر حيوي لجعل الواجهة متوافقة تماماً مع شاشات الهواتف -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>أكاديمية الحصري لقراء الجيل الذهبي</title>
   <style>
@@ -14,111 +13,88 @@
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background-color: var(--bg-color);
-      margin: 0;
-      padding: 10px;
-      color: #333;
+      margin: 0; padding: 10px; color: #333;
     }
     .container {
-      max-width: 900px;
-      margin: 0 auto;
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      max-width: 900px; margin: 0 auto; background: white;
+      padding: 20px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);
       box-sizing: border-box;
     }
-    h1 {
-      text-align: center;
-      color: var(--primary-color);
-      border-bottom: 2px solid var(--primary-color);
-      padding-bottom: 10px;
-      margin-bottom: 20px;
-      font-size: 22px;
-    }
     
-    /* تصميم التبويبات المتجاوب مع الهاتف */
-    .tabs {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 20px;
-      gap: 10px;
-    }
-    .tab-btn {
-      flex: 1;
-      padding: 12px;
-      cursor: pointer;
-      background: #e0e0e0;
-      border: none;
-      border-radius: 5px;
-      font-size: 15px;
-      font-weight: bold;
-      transition: 0.3s;
-      text-align: center;
-    }
+    /* الشعار والعنوان */
+    .header-logo { text-align: center; margin-bottom: 15px; }
+    .header-logo img { max-width: 150px; border-radius: 8px; }
+    h1 { text-align: center; color: var(--primary-color); border-bottom: 2px solid var(--primary-color); padding-bottom: 10px; margin-bottom: 20px; font-size: 22px; }
+    
+    /* شاشة تسجيل الدخول */
+    #loginScreen { max-width: 400px; margin: 50px auto; text-align: center; }
+    
+    /* التبويبات */
+    .tabs { display: flex; justify-content: space-between; margin-bottom: 20px; gap: 5px; flex-wrap: wrap; }
+    .tab-btn { flex: 1; min-width: 30%; padding: 10px; cursor: pointer; background: #e0e0e0; border: none; border-radius: 5px; font-size: 14px; font-weight: bold; transition: 0.3s; text-align: center; }
     .tab-btn.active { background: var(--primary-color); color: white; }
     
     .section { display: none; }
     .section.active { display: block; animation: fadeIn 0.4s; }
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-    /* النماذج مكبرة لتناسب لمس الأصابع */
+    /* النماذج */
     .form-group { margin-bottom: 15px; }
-    label {
-      display: block;
-      margin-bottom: 5px;
-      font-weight: bold;
-      color: var(--primary-color);
-      font-size: 14px;
-    }
-    select, input, button {
-      width: 100%;
-      padding: 12px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      font-size: 16px; /* خط 16px يمنع هواتف الآيفون من عمل Zoom */
-      box-sizing: border-box;
-    }
-    button.action-btn {
-      background-color: var(--primary-color);
-      color: white;
-      border: none;
-      font-weight: bold;
-      margin-top: 10px;
-      cursor: pointer;
-    }
+    label { display: block; margin-bottom: 5px; font-weight: bold; color: var(--primary-color); font-size: 14px; }
+    select, input, button { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 8px; font-size: 16px; box-sizing: border-box; }
+    button.action-btn { background-color: var(--primary-color); color: white; border: none; font-weight: bold; margin-top: 10px; cursor: pointer; }
     button.action-btn:disabled { background-color: #7f8c8d; cursor: wait; }
 
-    /* الجداول متجاوبة مع السحب */
-    .table-responsive {
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-    }
-    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    /* الفلتر السريع */
+    #fastFilter { margin-top: 15px; border: 2px solid var(--primary-color); display: none; }
+
+    /* الجداول */
+    .table-responsive { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    table { width: 100%; border-collapse: collapse; margin-top: 10px; }
     th, td { border: 1px solid #ddd; padding: 10px; text-align: right; font-size: 14px; }
     th { background-color: var(--primary-color); color: white; white-space: nowrap; }
     tr:nth-child(even) { background-color: #f9f9f9; }
     
-    .update-box {
-      background-color: #e8f5e9;
-      padding: 15px;
-      border-radius: 8px;
-      border: 1px solid #c8e6c9;
-      text-align: center;
-      margin-bottom: 25px;
-    }
+    /* الإحصائيات */
+    .stats-container { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 20px; }
+    .stat-card { background: var(--primary-color); color: white; flex: 1; min-width: 120px; padding: 20px; border-radius: 8px; text-align: center; }
+    .stat-card h3 { margin: 0; font-size: 28px; }
+    .stat-card p { margin: 5px 0 0 0; font-size: 14px; font-weight: bold; }
+    
+    .update-box { background-color: #e8f5e9; padding: 15px; border-radius: 8px; border: 1px solid #c8e6c9; text-align: center; margin-bottom: 25px; }
   </style>
 </head>
 <body>
 
-  <div class="container">
+  <!-- ================= شاشة تسجيل الدخول ================= -->
+  <div id="loginScreen" class="container">
+    <div class="header-logo">
+      <!-- ⚠️ استبدل الرابط أدناه برابط الشعار الخاص بالأكاديمية -->
+      <img src="https://cdn-icons-png.flaticon.com/512/3075/3075908.png" alt="شعار الأكاديمية">
+    </div>
+    <h2 style="color: var(--primary-color);">تسجيل الدخول للنظام</h2>
+    <input type="password" id="sysPassword" placeholder="أدخل كلمة المرور..." style="text-align: center; margin-bottom: 15px;">
+    <button class="action-btn" id="loginBtn" onclick="verifyLogin()">دخول 🔓</button>
+    <p id="loginMsg" style="color:red; font-weight:bold; margin-top:10px;"></p>
+  </div>
+
+  <!-- ================= النظام الرئيسي (مخفي حتى تسجيل الدخول) ================= -->
+  <div id="mainApp" class="container" style="display: none;">
+    
+    <div class="header-logo">
+      <!-- الشعار في الواجهة الرئيسية -->
+      <img src="https://cdn-icons-png.flaticon.com/512/3075/3075908.png" alt="شعار الأكاديمية" style="max-width: 100px;">
+    </div>
+    
     <h1>أكاديمية الحصري لقراء الجيل الذهبي</h1>
     
     <div class="tabs">
-      <button id="tabSearch" class="tab-btn active" onclick="switchTab('search')">البحث</button>
+      <button id="tabSearch" class="tab-btn active" onclick="switchTab('search')">البحث الفوري</button>
       <button id="tabFollowup" class="tab-btn" onclick="switchTab('followup')">المتابعة</button>
+      <button id="tabStats" class="tab-btn" onclick="switchTab('stats')">الإحصائيات</button>
     </div>
 
-    <!-- قسم البحث -->
+    <!-- 1. قسم البحث والفلاتر -->
     <div id="searchSection" class="section active">
       <div class="form-group">
         <label>نوع البحث:</label>
@@ -130,9 +106,7 @@
       
       <div id="teacherInput" class="form-group">
         <label>اسم المعلمة:</label>
-        <select id="searchTeacherName" class="teacherDropdown">
-          <option value="">جاري التحميل...</option>
-        </select>
+        <select id="searchTeacherName" class="teacherDropdown"><option value="">جاري التحميل...</option></select>
       </div>
 
       <div id="dayInput" class="form-group" style="display: none;">
@@ -148,7 +122,11 @@
         </select>
       </div>
 
-      <button class="action-btn" onclick="executeSearch()" id="searchBtn">🔍 بحث</button>
+      <button class="action-btn" onclick="executeSearch()" id="searchBtn">🔍 استخراج الجدول</button>
+      
+      <!-- مربع الفلتر السريع (يظهر بعد البحث) -->
+      <input type="text" id="fastFilter" placeholder="تصفية سريعة بالاسم أو الوقت..." onkeyup="filterTable()">
+      
       <div id="searchMessage" style="text-align:center; margin-top:10px; font-weight:bold;"></div>
 
       <div class="table-responsive">
@@ -161,9 +139,8 @@
       </div>
     </div>
 
-    <!-- قسم المتابعة -->
+    <!-- 2. قسم المتابعة والتحديث -->
     <div id="followupSection" class="section">
-      
       <div class="update-box">
         <h3 style="margin-top: 0; font-size: 16px; color: var(--primary-color);">تحديث بيانات النظام</h3>
         <button id="updateDbBtn" class="action-btn" onclick="triggerUpdate()">
@@ -184,12 +161,9 @@
         <label>اليوم:</label>
         <select id="logDay">
           <option value="السبت">السبت</option>
-          <option value="الأحد">الأحد</option>
-          <option value="الإثنين">الإثنين</option>
-          <option value="الثلاثاء">الثلاثاء</option>
-          <option value="الأربعاء">الأربعاء</option>
-          <option value="الخميس">الخميس</option>
-          <option value="الجمعة">الجمعة</option>
+          <option value="الأحد">الأحد</option><option value="الإثنين">الإثنين</option>
+          <option value="الثلاثاء">الثلاثاء</option><option value="الأربعاء">الأربعاء</option>
+          <option value="الخميس">الخميس</option><option value="الجمعة">الجمعة</option>
         </select>
       </div>
       <div class="form-group">
@@ -199,10 +173,8 @@
       <div class="form-group">
         <label>الحالة:</label>
         <select id="logStatus">
-          <option value="حضور">حضور</option>
-          <option value="غياب بعذر">غياب بعذر</option>
-          <option value="غياب بدون عذر">غياب بدون عذر</option>
-          <option value="تأخير">تأخير</option>
+          <option value="حضور">حضور</option><option value="غياب بعذر">غياب بعذر</option>
+          <option value="غياب بدون عذر">غياب بدون عذر</option><option value="تأخير">تأخير</option>
         </select>
       </div>
       <div class="form-group">
@@ -212,17 +184,35 @@
 
       <button class="action-btn" onclick="submitAttendance()" id="saveBtn">💾 حفظ السجل</button>
       <div id="saveMessage" style="text-align:center; margin-top:10px; font-weight:bold;"></div>
-
     </div>
+
+    <!-- 3. قسم الإحصائيات -->
+    <div id="statsSection" class="section">
+      <h3 style="text-align:center; color:var(--primary-color);">لوحة معلومات الأكاديمية</h3>
+      <button class="action-btn" id="statsBtn" onclick="loadStats()">📊 جلب الإحصائيات الحديثة</button>
+      <p id="statsMsg" style="text-align:center; font-weight:bold;"></p>
+      
+      <div class="stats-container" id="statsDisplay" style="display:none;">
+        <div class="stat-card">
+          <h3 id="statTeachers">0</h3>
+          <p>إجمالي المعلمات</p>
+        </div>
+        <div class="stat-card">
+          <h3 id="statStudents">0</h3>
+          <p>إجمالي الطالبات</p>
+        </div>
+        <div class="stat-card">
+          <h3 id="statAttendance">0</h3>
+          <p>سجلات الحضور</p>
+        </div>
+      </div>
+    </div>
+
   </div>
 
   <script>
-    // ==========================================
-    // تم إضافة رابط تطبيق الويب الخاص بك بنجاح
-    // ==========================================
     const API_URL = "https://script.google.com/macros/s/AKfycbzo8nMaJVhV714durka0DUBhtf8XX9Vis0JI8a_9AbFr2EjpF0tVcxKFrt9te2Ij49G/exec";
 
-    // دالة الاتصال بالواجهة الخلفية (API)
     async function apiCall(action, data = {}) {
       const response = await fetch(API_URL, {
         method: 'POST',
@@ -234,18 +224,49 @@
       return result;
     }
 
-    function switchTab(tab) {
-      document.getElementById('searchSection').classList.remove('active');
-      document.getElementById('followupSection').classList.remove('active');
-      document.getElementById('tabSearch').classList.remove('active');
-      document.getElementById('tabFollowup').classList.remove('active');
+    // --- 1. نظام تسجيل الدخول ---
+    async function verifyLogin() {
+      const pwd = document.getElementById('sysPassword').value;
+      const btn = document.getElementById('loginBtn');
+      const msg = document.getElementById('loginMsg');
+      
+      if(!pwd) { msg.innerText = 'الرجاء إدخال كلمة المرور'; return; }
+      
+      btn.disabled = true; msg.style.color = '#333'; msg.innerText = '⏳ جاري التحقق...';
+      
+      try {
+        await apiCall('verifyPassword', { password: pwd });
+        // نجاح الدخول
+        document.getElementById('loginScreen').style.display = 'none';
+        document.getElementById('mainApp').style.display = 'block';
+        loadTeachersData(); // تحميل البيانات بعد تسجيل الدخول بنجاح
+      } catch(err) {
+        msg.style.color = 'red'; msg.innerText = err.message;
+      } finally {
+        btn.disabled = false;
+      }
+    }
 
+    // دعم ضغط زر Enter لتسجيل الدخول
+    document.getElementById('sysPassword').addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') verifyLogin();
+    });
+
+    // --- 2. إدارة التبويبات ---
+    function switchTab(tab) {
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      
       if(tab === 'search') {
         document.getElementById('searchSection').classList.add('active');
         document.getElementById('tabSearch').classList.add('active');
-      } else {
+      } else if (tab === 'followup') {
         document.getElementById('followupSection').classList.add('active');
         document.getElementById('tabFollowup').classList.add('active');
+      } else {
+        document.getElementById('statsSection').classList.add('active');
+        document.getElementById('tabStats').classList.add('active');
+        loadStats(); // تحميل الإحصائيات فور فتح التبويب
       }
     }
 
@@ -254,8 +275,6 @@
       document.getElementById('teacherInput').style.display = (type === 'teacher') ? 'block' : 'none';
       document.getElementById('dayInput').style.display = (type === 'day') ? 'block' : 'none';
     }
-
-    window.onload = loadTeachersData;
 
     async function loadTeachersData() {
       try {
@@ -269,30 +288,20 @@
             select.appendChild(option);
           });
         }
-      } catch (e) {
-        console.error("خطأ في جلب البيانات: ", e);
-      }
+      } catch (e) { console.error("خطأ: ", e); }
     }
 
-    async function triggerUpdate() {
-      const btn = document.getElementById('updateDbBtn');
-      const statusText = document.getElementById('updateStatus');
-      
-      btn.disabled = true;
-      statusText.innerText = '⏳ جاري القراءة من الجداول...';
-      statusText.style.color = '#333';
-
-      try {
-        const res = await apiCall('updateMasterDB');
-        statusText.style.color = '#27ae60'; 
-        statusText.innerText = res.message; 
-        await loadTeachersData(); // تحديث القوائم
-      } catch (err) {
-        statusText.style.color = '#c0392b'; 
-        statusText.innerText = '❌ خطأ: ' + err.message;
-      } finally {
-        btn.disabled = false;
-        setTimeout(() => statusText.innerText = '', 5000);
+    // --- 3. الفلتر السريع للجدول ---
+    function filterTable() {
+      let filter = document.getElementById("fastFilter").value.toUpperCase();
+      let tr = document.getElementById("resultsBody").getElementsByTagName("tr");
+      for (let i = 0; i < tr.length; i++) {
+        let td = tr[i].getElementsByTagName("td");
+        let match = false;
+        for(let j=0; j<td.length; j++) {
+          if (td[j] && td[j].innerText.toUpperCase().indexOf(filter) > -1) { match = true; break; }
+        }
+        tr[i].style.display = match ? "" : "none";
       }
     }
 
@@ -305,10 +314,10 @@
       if (type === 'teacher') params.teacher = document.getElementById('searchTeacherName').value;
       if (type === 'day') params.day = document.getElementById('searchDay').value;
 
-      btn.disabled = true;
-      msg.style.color = '#333';
-      msg.innerText = '⏳ جاري البحث...';
+      btn.disabled = true; msg.style.color = '#333'; msg.innerText = '⏳ جاري استخراج الجدول...';
       document.getElementById('resultsTable').style.display = 'none';
+      document.getElementById('fastFilter').style.display = 'none';
+      document.getElementById('fastFilter').value = '';
 
       try {
         const results = await apiCall('searchSchedule', params);
@@ -316,8 +325,7 @@
         tbody.innerHTML = '';
         
         if (results.length === 0) {
-          msg.style.color = '#c0392b';
-          msg.innerText = 'لا توجد نتائج مطابقة.';
+          msg.style.color = '#c0392b'; msg.innerText = 'لا توجد نتائج مطابقة.';
         } else {
           msg.innerText = 'تم العثور على ' + results.length + ' نتيجة.';
           msg.style.color = '#27ae60';
@@ -327,19 +335,16 @@
             tbody.appendChild(tr);
           });
           document.getElementById('resultsTable').style.display = 'table';
+          document.getElementById('fastFilter').style.display = 'block'; // إظهار مربع الفلتر
         }
       } catch (err) {
-        msg.style.color = '#c0392b';
-        msg.innerText = '❌ خطأ: ' + err.message;
-      } finally {
-        btn.disabled = false;
-      }
+        msg.style.color = '#c0392b'; msg.innerText = '❌ خطأ: ' + err.message;
+      } finally { btn.disabled = false; }
     }
 
     async function submitAttendance() {
       const btn = document.getElementById('saveBtn');
       const msg = document.getElementById('saveMessage');
-      
       const record = {
         teacher: document.getElementById('logTeacher').value,
         student: document.getElementById('logStudent').value,
@@ -350,29 +355,58 @@
       };
 
       if (!record.teacher || !record.student || !record.time) {
-        msg.style.color = '#c0392b';
-        msg.innerText = 'يرجى تعبئة الحقول الأساسية.';
-        return;
+        msg.style.color = '#c0392b'; msg.innerText = 'يرجى تعبئة الحقول الأساسية.'; return;
       }
 
-      btn.disabled = true;
-      msg.style.color = '#333';
-      msg.innerText = '⏳ جاري الحفظ...';
+      btn.disabled = true; msg.style.color = '#333'; msg.innerText = '⏳ جاري الحفظ...';
 
       try {
         const res = await apiCall('saveAttendance', record);
-        msg.style.color = '#27ae60';
-        msg.innerText = res.message;
-        
+        msg.style.color = '#27ae60'; msg.innerText = res.message;
         document.getElementById('logStudent').value = '';
         document.getElementById('logTime').value = '';
         document.getElementById('logNotes').value = '';
       } catch (err) {
-        msg.style.color = '#c0392b';
-        msg.innerText = '❌ خطأ: ' + err.message;
+        msg.style.color = '#c0392b'; msg.innerText = '❌ خطأ: ' + err.message;
       } finally {
         btn.disabled = false;
         setTimeout(() => { if(msg.innerText === 'تم حفظ السجل بنجاح!') msg.innerText = ''; }, 4000);
+      }
+    }
+
+    async function triggerUpdate() {
+      const btn = document.getElementById('updateDbBtn');
+      const statusText = document.getElementById('updateStatus');
+      btn.disabled = true; statusText.style.color = '#333'; statusText.innerText = '⏳ جاري المزامنة...';
+      try {
+        const res = await apiCall('updateMasterDB');
+        statusText.style.color = '#27ae60'; statusText.innerText = res.message; 
+        await loadTeachersData();
+      } catch (err) {
+        statusText.style.color = '#c0392b'; statusText.innerText = '❌ خطأ: ' + err.message;
+      } finally {
+        btn.disabled = false; setTimeout(() => statusText.innerText = '', 5000);
+      }
+    }
+
+    // --- 4. دالة جلب الإحصائيات ---
+    async function loadStats() {
+      const btn = document.getElementById('statsBtn');
+      const msg = document.getElementById('statsMsg');
+      btn.disabled = true; msg.style.color = '#333'; msg.innerText = '⏳ جاري قراءة الجداول...';
+      
+      try {
+        const stats = await apiCall('getStatistics');
+        document.getElementById('statTeachers').innerText = stats.teachers;
+        document.getElementById('statStudents').innerText = stats.students;
+        document.getElementById('statAttendance').innerText = stats.attendance;
+        
+        document.getElementById('statsDisplay').style.display = 'flex';
+        msg.innerText = '';
+      } catch (err) {
+        msg.style.color = '#c0392b'; msg.innerText = '❌ خطأ: ' + err.message;
+      } finally {
+        btn.disabled = false;
       }
     }
   </script>
