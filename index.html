@@ -23,11 +23,11 @@
     
     /* الشعار والعنوان */
     .header-logo { text-align: center; margin-bottom: 15px; }
-    .header-logo img { max-width: 150px; border-radius: 8px; }
+    .header-logo img { max-width: 140px; height: auto; border-radius: 8px; }
     h1 { text-align: center; color: var(--primary-color); border-bottom: 2px solid var(--primary-color); padding-bottom: 10px; margin-bottom: 20px; font-size: 22px; }
     
     /* شاشة تسجيل الدخول */
-    #loginScreen { max-width: 400px; margin: 50px auto; text-align: center; }
+    #loginScreen { max-width: 400px; margin: 40px auto; text-align: center; }
     
     /* التبويبات */
     .tabs { display: flex; justify-content: space-between; margin-bottom: 20px; gap: 5px; flex-wrap: wrap; }
@@ -69,10 +69,9 @@
   <!-- ================= شاشة تسجيل الدخول ================= -->
   <div id="loginScreen" class="container">
     <div class="header-logo">
-      <!-- ⚠️ استبدل الرابط أدناه برابط الشعار الخاص بالأكاديمية -->
-      <img src="https://cdn-icons-png.flaticon.com/512/3075/3075908.png" alt="شعار الأكاديمية">
+      <img src="https://i.postimg.cc/B695TfCh/alsh%CA%BFar-alhsry.jpg" alt="شعار الأكاديمية">
     </div>
-    <h2 style="color: var(--primary-color);">تسجيل الدخول للنظام</h2>
+    <h2 style="color: var(--primary-color); font-size: 20px;">تسجيل الدخول للنظام</h2>
     <input type="password" id="sysPassword" placeholder="أدخل كلمة المرور..." style="text-align: center; margin-bottom: 15px;">
     <button class="action-btn" id="loginBtn" onclick="verifyLogin()">دخول 🔓</button>
     <p id="loginMsg" style="color:red; font-weight:bold; margin-top:10px;"></p>
@@ -82,8 +81,7 @@
   <div id="mainApp" class="container" style="display: none;">
     
     <div class="header-logo">
-      <!-- الشعار في الواجهة الرئيسية -->
-      <img src="https://cdn-icons-png.flaticon.com/512/3075/3075908.png" alt="شعار الأكاديمية" style="max-width: 100px;">
+      <img src="https://i.postimg.cc/B695TfCh/alsh%CA%BFar-alhsry.jpg" alt="شعار الأكاديمية">
     </div>
     
     <h1>أكاديمية الحصري لقراء الجيل الذهبي</h1>
@@ -211,7 +209,7 @@
   </div>
 
   <script>
-    const API_URL = "https://script.google.com/macros/s/AKfycbzo8nMaJVhV714durka0DUBhtf8XX9Vis0JI8a_9AbFr2EjpF0tVcxKFrt9te2Ij49G/exec";
+    const API_URL = "https://script.google.com/macros/s/AKfycbzQDz2GXFeqjQqbi78yfb1s6uAKi_QzrxgQ8E4OufZglmsHn9lIhiibim_5JAqXYBmd/exec";
 
     async function apiCall(action, data = {}) {
       const response = await fetch(API_URL, {
@@ -224,7 +222,6 @@
       return result;
     }
 
-    // --- 1. نظام تسجيل الدخول ---
     async function verifyLogin() {
       const pwd = document.getElementById('sysPassword').value;
       const btn = document.getElementById('loginBtn');
@@ -236,10 +233,9 @@
       
       try {
         await apiCall('verifyPassword', { password: pwd });
-        // نجاح الدخول
         document.getElementById('loginScreen').style.display = 'none';
         document.getElementById('mainApp').style.display = 'block';
-        loadTeachersData(); // تحميل البيانات بعد تسجيل الدخول بنجاح
+        loadTeachersData();
       } catch(err) {
         msg.style.color = 'red'; msg.innerText = err.message;
       } finally {
@@ -247,12 +243,10 @@
       }
     }
 
-    // دعم ضغط زر Enter لتسجيل الدخول
     document.getElementById('sysPassword').addEventListener('keypress', function (e) {
         if (e.key === 'Enter') verifyLogin();
     });
 
-    // --- 2. إدارة التبويبات ---
     function switchTab(tab) {
       document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
       document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -266,7 +260,7 @@
       } else {
         document.getElementById('statsSection').classList.add('active');
         document.getElementById('tabStats').classList.add('active');
-        loadStats(); // تحميل الإحصائيات فور فتح التبويب
+        loadStats();
       }
     }
 
@@ -291,7 +285,6 @@
       } catch (e) { console.error("خطأ: ", e); }
     }
 
-    // --- 3. الفلتر السريع للجدول ---
     function filterTable() {
       let filter = document.getElementById("fastFilter").value.toUpperCase();
       let tr = document.getElementById("resultsBody").getElementsByTagName("tr");
@@ -335,7 +328,7 @@
             tbody.appendChild(tr);
           });
           document.getElementById('resultsTable').style.display = 'table';
-          document.getElementById('fastFilter').style.display = 'block'; // إظهار مربع الفلتر
+          document.getElementById('fastFilter').style.display = 'block';
         }
       } catch (err) {
         msg.style.color = '#c0392b'; msg.innerText = '❌ خطأ: ' + err.message;
@@ -389,7 +382,6 @@
       }
     }
 
-    // --- 4. دالة جلب الإحصائيات ---
     async function loadStats() {
       const btn = document.getElementById('statsBtn');
       const msg = document.getElementById('statsMsg');
