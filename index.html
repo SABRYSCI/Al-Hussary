@@ -84,8 +84,9 @@
       border: none;
       font-weight: bold;
       margin-top: 10px;
+      cursor: pointer;
     }
-    button.action-btn:disabled { background-color: #7f8c8d; }
+    button.action-btn:disabled { background-color: #7f8c8d; cursor: wait; }
 
     /* الجداول متجاوبة مع السحب */
     .table-responsive {
@@ -217,15 +218,12 @@
 
   <script>
     // ==========================================
-    // ⚠️ ضع رابط تطبيق الويب الخاص بك هنا 
+    // تم إضافة رابط تطبيق الويب الخاص بك بنجاح
     // ==========================================
-    const API_URL = "أدخل_رابط_تطبيق_جوجل_هنا_الذي_ينتهي_بكلمة_exec";
+    const API_URL = "https://script.google.com/macros/s/AKfycbzo8nMaJVhV714durka0DUBhtf8XX9Vis0JI8a_9AbFr2EjpF0tVcxKFrt9te2Ij49G/exec";
 
     // دالة الاتصال بالواجهة الخلفية (API)
     async function apiCall(action, data = {}) {
-      if(API_URL === "أدخل_رابط_تطبيق_جوجل_هنا_الذي_ينتهي_بكلمة_exec") {
-        throw new Error("يرجى إضافة رابط تطبيق جوجل في ملف HTML أولاً.");
-      }
       const response = await fetch(API_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'text/plain;charset=utf-8' },
