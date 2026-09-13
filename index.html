@@ -8,60 +8,131 @@
     :root {
       --primary-color: #0d4d47;
       --hover-color: #116b63;
-      --bg-color: #f4f7f6;
+      --bg-color: #f0f4f3;
+      --green-btn: #198754;
+      --yellow-btn: #e5a100;
+      --red-btn: #dc3545;
     }
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background-color: var(--bg-color);
-      margin: 0; padding: 10px; color: #333;
+      margin: 0; padding: 12px; color: #333;
     }
     .container {
-      max-width: 900px; margin: 0 auto; background: white;
-      padding: 20px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      max-width: 500px; margin: 0 auto; background: white;
+      padding: 18px; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.06);
       box-sizing: border-box;
     }
     
     /* الشعار والعنوان */
-    .header-logo { text-align: center; margin-bottom: 15px; }
-    .header-logo img { max-width: 140px; height: auto; border-radius: 8px; }
-    h1 { text-align: center; color: var(--primary-color); border-bottom: 2px solid var(--primary-color); padding-bottom: 10px; margin-bottom: 20px; font-size: 22px; }
+    .header-logo { text-align: center; margin-bottom: 12px; }
+    .header-logo img { max-width: 130px; height: auto; border-radius: 12px; }
+    h1 { text-align: center; color: var(--primary-color); font-size: 20px; margin: 8px 0 16px 0; }
     
     /* شاشة تسجيل الدخول */
-    #loginScreen { max-width: 400px; margin: 40px auto; text-align: center; }
+    #loginScreen { max-width: 380px; margin: 40px auto; text-align: center; }
     
     /* التبويبات */
-    .tabs { display: flex; justify-content: space-between; margin-bottom: 20px; gap: 5px; flex-wrap: wrap; }
-    .tab-btn { flex: 1; min-width: 30%; padding: 10px; cursor: pointer; background: #e0e0e0; border: none; border-radius: 5px; font-size: 14px; font-weight: bold; transition: 0.3s; text-align: center; }
+    .tabs { display: flex; justify-content: space-between; margin-bottom: 16px; gap: 6px; }
+    .tab-btn { flex: 1; padding: 10px 4px; cursor: pointer; background: #e9ecef; border: none; border-radius: 8px; font-size: 14px; font-weight: bold; transition: 0.2s; text-align: center; color: #495057; }
     .tab-btn.active { background: var(--primary-color); color: white; }
     
     .section { display: none; }
-    .section.active { display: block; animation: fadeIn 0.4s; }
+    .section.active { display: block; animation: fadeIn 0.3s; }
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-    /* النماذج */
-    .form-group { margin-bottom: 15px; }
-    label { display: block; margin-bottom: 5px; font-weight: bold; color: var(--primary-color); font-size: 14px; }
-    select, input, button { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 8px; font-size: 16px; box-sizing: border-box; }
-    button.action-btn { background-color: var(--primary-color); color: white; border: none; font-weight: bold; margin-top: 10px; cursor: pointer; }
-    button.action-btn:disabled { background-color: #7f8c8d; cursor: wait; }
+    /* حقول الإدخال */
+    .form-group { margin-bottom: 12px; }
+    label { display: block; margin-bottom: 4px; font-weight: bold; color: var(--primary-color); font-size: 13px; }
+    select, input { width: 100%; padding: 11px; border: 1px solid #ced4da; border-radius: 8px; font-size: 15px; box-sizing: border-box; }
+    
+    button.action-btn { background-color: var(--primary-color); color: white; border: none; font-weight: bold; padding: 12px; border-radius: 8px; width: 100%; font-size: 15px; cursor: pointer; transition: 0.2s; }
+    button.action-btn:hover { background-color: var(--hover-color); }
+    button.action-btn:disabled { background-color: #adb5bd; cursor: wait; }
+
+    /* صندوق المزامنة */
+    .update-box { background-color: #eaf5ea; padding: 10px; border-radius: 10px; border: 1px solid #cce5cc; text-align: center; margin-bottom: 14px; }
+    .sync-btn { background-color: #116b63; color: white; border: none; padding: 8px 14px; border-radius: 6px; font-weight: bold; font-size: 13px; cursor: pointer; width: 100%; }
+
+    /* زر إعادة الضبط المطابق للصورة */
+    .reset-btn {
+      width: 100%; background: #e2e8f0; color: #334155; border: 1px solid #cbd5e1;
+      padding: 10px; border-radius: 8px; font-weight: bold; font-size: 14px;
+      margin-bottom: 14px; cursor: pointer;
+    }
+    .reset-btn:hover { background: #cbd5e1; }
 
     /* الفلتر السريع */
-    #fastFilter { margin-top: 15px; border: 2px solid var(--primary-color); display: none; }
+    #fastFilter { margin: 10px 0 14px 0; border: 2px solid var(--primary-color); border-radius: 8px; }
 
-    /* الجداول */
-    .table-responsive { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-    table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-    th, td { border: 1px solid #ddd; padding: 10px; text-align: right; font-size: 14px; }
-    th { background-color: var(--primary-color); color: white; white-space: nowrap; }
-    tr:nth-child(even) { background-color: #f9f9f9; }
-    
+    /* تصميم البطاقات مطابق تماماً للصورة */
+    .schedule-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 14px;
+      padding: 16px;
+      margin-bottom: 14px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+      transition: transform 0.15s ease;
+    }
+    .card-teacher {
+      font-size: 17px;
+      font-weight: bold;
+      color: #0d4d47;
+      margin-bottom: 8px;
+      border-bottom: 1px solid #f1f5f9;
+      padding-bottom: 6px;
+    }
+    .card-student {
+      font-size: 16px;
+      font-weight: 600;
+      color: #334155;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 6px;
+      margin-top: 6px;
+    }
+    .card-meta {
+      font-size: 13px;
+      color: #64748b;
+      margin: 4px 0 12px 0;
+    }
+    .attendance-actions {
+      display: flex;
+      gap: 8px;
+      border-top: 1px solid #f1f5f9;
+      padding-top: 10px;
+    }
+    .btn-attend {
+      flex: 1;
+      padding: 8px 4px;
+      border: none;
+      border-radius: 6px;
+      color: white;
+      font-weight: bold;
+      font-size: 14px;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.1s;
+    }
+    .btn-attend:active { transform: scale(0.96); }
+    .btn-present { background-color: var(--green-btn); }
+    .btn-late { background-color: var(--yellow-btn); }
+    .btn-absent { background-color: var(--red-btn); }
+
+    .card-status-label {
+      text-align: center;
+      font-size: 12px;
+      font-weight: bold;
+      margin-top: 6px;
+      display: none;
+    }
+
     /* الإحصائيات */
-    .stats-container { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 20px; }
-    .stat-card { background: var(--primary-color); color: white; flex: 1; min-width: 120px; padding: 20px; border-radius: 8px; text-align: center; }
-    .stat-card h3 { margin: 0; font-size: 28px; }
-    .stat-card p { margin: 5px 0 0 0; font-size: 14px; font-weight: bold; }
-    
-    .update-box { background-color: #e8f5e9; padding: 15px; border-radius: 8px; border: 1px solid #c8e6c9; text-align: center; margin-bottom: 20px; }
+    .stats-container { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
+    .stat-card { background: var(--primary-color); color: white; flex: 1; min-width: 100px; padding: 16px 8px; border-radius: 10px; text-align: center; }
+    .stat-card h3 { margin: 0; font-size: 24px; }
+    .stat-card p { margin: 4px 0 0 0; font-size: 12px; font-weight: bold; }
   </style>
 </head>
 <body>
@@ -71,10 +142,10 @@
     <div class="header-logo">
       <img src="https://i.postimg.cc/B695TfCh/alsh%CA%BFar-alhsry.jpg" alt="شعار الأكاديمية">
     </div>
-    <h2 style="color: var(--primary-color); font-size: 20px;">تسجيل الدخول للنظام</h2>
-    <input type="password" id="sysPassword" placeholder="أدخل كلمة المرور..." style="text-align: center; margin-bottom: 15px;">
+    <h2 style="color: var(--primary-color); font-size: 19px; text-align:center;">تسجيل الدخول للنظام</h2>
+    <input type="password" id="sysPassword" placeholder="أدخل كلمة المرور..." style="text-align: center; margin-bottom: 12px;">
     <button class="action-btn" id="loginBtn" onclick="verifyLogin()">دخول 🔓</button>
-    <p id="loginMsg" style="color:red; font-weight:bold; margin-top:10px;"></p>
+    <p id="loginMsg" style="color:red; font-weight:bold; margin-top:10px; text-align:center; font-size:14px;"></p>
   </div>
 
   <!-- ================= النظام الرئيسي ================= -->
@@ -87,20 +158,19 @@
     <h1>أكاديمية الحصري لقراء الجيل الذهبي</h1>
     
     <div class="tabs">
-      <button id="tabSearch" class="tab-btn active" onclick="switchTab('search')">البحث الفوري</button>
-      <button id="tabFollowup" class="tab-btn" onclick="switchTab('followup')">المتابعة</button>
+      <button id="tabSearch" class="tab-btn active" onclick="switchTab('search')">البحث والمتابعة</button>
       <button id="tabStats" class="tab-btn" onclick="switchTab('stats')">الإحصائيات</button>
     </div>
 
-    <!-- 1. قسم البحث والفلاتر (تم إضافة زر المزامنة هنا أيضاً) -->
+    <!-- 1. قسم البحث والمتابعة بالبطاقات -->
     <div id="searchSection" class="section active">
       
-      <!-- مربع المزامنة السريع في تبويب البحث -->
-      <div class="update-box" style="padding: 10px; margin-bottom: 15px;">
-        <button id="updateDbBtnSearch" class="action-btn" onclick="triggerUpdate()" style="margin-top:0; background-color: #116b63; padding: 8px;">
-          <span id="btnTextSearch">🔄 مزامنة وتحديث الجداول فوراً</span>
+      <!-- مزامنة سريعة للجداول -->
+      <div class="update-box">
+        <button id="updateDbBtn" class="sync-btn" onclick="triggerUpdate()">
+          <span id="btnText">🔄 مزامنة الجداول من جوجل</span>
         </button>
-        <p id="updateStatusSearch" style="margin: 5px 0 0 0; font-size: 13px; font-weight:bold;"></p>
+        <p id="updateStatus" style="margin: 4px 0 0 0; font-size: 12px; font-weight:bold;"></p>
       </div>
 
       <div class="form-group">
@@ -126,71 +196,24 @@
 
       <button class="action-btn" onclick="executeSearch()" id="searchBtn">🔍 استخراج الجدول</button>
       
-      <!-- مربع الفلتر السريع -->
-      <input type="text" id="fastFilter" placeholder="تصفية سريعة بالاسم أو الوقت..." onkeyup="filterTable()">
-      
-      <div id="searchMessage" style="text-align:center; margin-top:10px; font-weight:bold;"></div>
+      <div id="searchMessage" style="text-align:center; margin-top:10px; font-weight:bold; font-size:14px;"></div>
 
-      <div class="table-responsive">
-        <table id="resultsTable" style="display:none;">
-          <thead>
-            <tr><th>المعلمة</th><th>الطالبة</th><th>اليوم</th><th>الوقت</th></tr>
-          </thead>
-          <tbody id="resultsBody"></tbody>
-        </table>
+      <!-- نتائج البطاقات مع زر إعادة الضبط والفلتر -->
+      <div id="resultsContainer" style="margin-top: 14px; display: none;">
+        <button class="reset-btn" onclick="resetCardsView()">إعادة الضبط</button>
+        
+        <input type="text" id="fastFilter" placeholder="تصفية سريعة بالاسم أو الوقت..." onkeyup="filterCards()">
+        
+        <div id="cardsList"></div>
       </div>
+
     </div>
 
-    <!-- 2. قسم المتابعة والتحديث -->
-    <div id="followupSection" class="section">
-      <div class="update-box">
-        <h3 style="margin-top: 0; font-size: 16px; color: var(--primary-color);">تحديث بيانات النظام</h3>
-        <button id="updateDbBtn" class="action-btn" onclick="triggerUpdate()">
-          <span id="btnText">🔄 مزامنة الجداول</span>
-        </button>
-        <p id="updateStatus" style="margin-top: 10px; font-size: 14px; font-weight:bold;"></p>
-      </div>
-      
-      <div class="form-group">
-        <label>المعلمة:</label>
-        <select id="logTeacher" class="teacherDropdown"><option value="">جاري التحميل...</option></select>
-      </div>
-      <div class="form-group">
-        <label>اسم الطالبة:</label>
-        <input type="text" id="logStudent" placeholder="أدخل اسم الطالبة">
-      </div>
-      <div class="form-group">
-        <label>اليوم:</label>
-        <select id="logDay">
-          <option value="السبت">السبت</option><option value="الأحد">الأحد</option><option value="الإثنين">الإثنين</option>
-          <option value="الثلاثاء">الثلاثاء</option><option value="الأربعاء">الأربعاء</option><option value="الخميس">الخميس</option><option value="الجمعة">الجمعة</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>الوقت (مثال: 04:30 مساءً):</label>
-        <input type="text" id="logTime" placeholder="00:00 مساءً">
-      </div>
-      <div class="form-group">
-        <label>الحالة:</label>
-        <select id="logStatus">
-          <option value="حضور">حضور</option><option value="غياب بعذر">غياب بعذر</option>
-          <option value="غياب بدون عذر">غياب بدون عذر</option><option value="تأخير">تأخير</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>ملاحظات (اختياري):</label>
-        <input type="text" id="logNotes" placeholder="أي ملاحظات">
-      </div>
-
-      <button class="action-btn" onclick="submitAttendance()" id="saveBtn">💾 حفظ السجل</button>
-      <div id="saveMessage" style="text-align:center; margin-top:10px; font-weight:bold;"></div>
-    </div>
-
-    <!-- 3. قسم الإحصائيات -->
+    <!-- 2. قسم الإحصائيات -->
     <div id="statsSection" class="section">
-      <h3 style="text-align:center; color: var(--primary-color);">لوحة معلومات الأكاديمية</h3>
-      <button class="action-btn" id="statsBtn" onclick="loadStats()">📊 جلب الإحصائيات الحديثة</button>
-      <p id="statsMsg" style="text-align:center; font-weight:bold;"></p>
+      <h3 style="text-align:center; color: var(--primary-color); font-size: 17px; margin-top: 4px;">لوحة معلومات الأكاديمية</h3>
+      <button class="action-btn" id="statsBtn" onclick="loadStats()">📊 تحديث الإحصائيات</button>
+      <p id="statsMsg" style="text-align:center; font-weight:bold; font-size:13px;"></p>
       
       <div class="stats-container" id="statsDisplay" style="display:none;">
         <div class="stat-card">
@@ -246,7 +269,7 @@
     }
 
     document.getElementById('sysPassword').addEventListener('keypress', function (e) {
-        if (e.key === 'Enter') verifyLogin();
+      if (e.key === 'Enter') verifyLogin();
     });
 
     function switchTab(tab) {
@@ -256,9 +279,6 @@
       if(tab === 'search') {
         document.getElementById('searchSection').classList.add('active');
         document.getElementById('tabSearch').classList.add('active');
-      } else if (tab === 'followup') {
-        document.getElementById('followupSection').classList.add('active');
-        document.getElementById('tabFollowup').classList.add('active');
       } else {
         document.getElementById('statsSection').classList.add('active');
         document.getElementById('tabStats').classList.add('active');
@@ -272,11 +292,9 @@
       document.getElementById('dayInput').style.display = (type === 'day') ? 'block' : 'none';
     }
 
-    // --- تسريع تحميل القوائم عبر التخزين المؤقت (Cache) ---
     async function loadTeachersData(forceRefresh = false) {
       try {
         let cachedTeachers = localStorage.getItem('cachedTeachers');
-        
         if (cachedTeachers && !forceRefresh) {
           populateDropdowns(JSON.parse(cachedTeachers));
           return;
@@ -300,125 +318,170 @@
       }
     }
 
-    function filterTable() {
-      let filter = document.getElementById("fastFilter").value.toUpperCase();
-      let tr = document.getElementById("resultsBody").getElementsByTagName("tr");
-      for (let i = 0; i < tr.length; i++) {
-        let td = tr[i].getElementsByTagName("td");
-        let match = false;
-        for(let j=0; j<td.length; j++) {
-          if (td[j] && td[j].innerText.toUpperCase().indexOf(filter) > -1) { match = true; break; }
-        }
-        tr[i].style.display = match ? "" : "none";
-      }
-    }
-
+    // --- توليد البطاقات التفاعلية مع أزرار المتابعة السريعة ---
     async function executeSearch() {
       const btn = document.getElementById('searchBtn');
       const msg = document.getElementById('searchMessage');
       const type = document.getElementById('searchType').value;
+      const resContainer = document.getElementById('resultsContainer');
+      const cardsList = document.getElementById('cardsList');
       
       let params = { type: type };
       if (type === 'teacher') params.teacher = document.getElementById('searchTeacherName').value;
       if (type === 'day') params.day = document.getElementById('searchDay').value;
 
-      btn.disabled = true; msg.style.color = '#333'; msg.innerText = '⏳ جاري استخراج الجدول...';
-      document.getElementById('resultsTable').style.display = 'none';
-      document.getElementById('fastFilter').style.display = 'none';
+      btn.disabled = true; msg.style.color = '#333'; msg.innerText = '⏳ جاري استخراج الحصص...';
+      resContainer.style.display = 'none';
+      cardsList.innerHTML = '';
       document.getElementById('fastFilter').value = '';
 
       try {
         const results = await apiCall('searchSchedule', params);
-        const tbody = document.getElementById('resultsBody');
-        tbody.innerHTML = '';
         
-        if (results.length === 0) {
-          msg.style.color = '#c0392b'; msg.innerText = 'لا توجد نتائج مطابقة.';
+        if (!results || results.length === 0) {
+          msg.style.color = '#c0392b'; msg.innerText = 'لا توجد حصص مسجلة.';
         } else {
-          msg.innerText = 'تم العثور على ' + results.length + ' نتيجة.';
-          msg.style.color = '#27ae60';
-          results.forEach(row => {
-            let tr = document.createElement('tr');
-            tr.innerHTML = `<td>${row.teacher}</td><td>${row.student}</td><td>${row.day}</td><td>${row.time}</td>`;
-            tbody.appendChild(tr);
+          msg.innerText = 'تم العثور على ' + results.length + ' حصة:';
+          msg.style.color = '#198754';
+          
+          results.forEach((row, idx) => {
+            const card = document.createElement('div');
+            card.className = 'schedule-card';
+            card.id = `card_${idx}`;
+            
+            // ضبط البيانات لضمان تمريرها بأمان
+            const cardTeacher = row.teacher.startsWith('أ/') ? row.teacher : 'أ./ ' + row.teacher;
+            
+            card.innerHTML = `
+              <div class="card-teacher">${cardTeacher}</div>
+              <div class="card-student">
+                <span style="font-size: 18px;">🎓</span> ${row.student}
+              </div>
+              <div class="card-meta">${row.day} - ${row.time}</div>
+              
+              <div class="attendance-actions" id="actions_${idx}">
+                <button class="btn-attend btn-present" onclick="quickAttend('${escapeStr(row.teacher)}', '${escapeStr(row.student)}', '${row.day}', '${row.time}', 'حضور', ${idx})">حضرت</button>
+                <button class="btn-attend btn-late" onclick="quickAttend('${escapeStr(row.teacher)}', '${escapeStr(row.student)}', '${row.day}', '${row.time}', 'تأخير', ${idx})">تأخرت</button>
+                <button class="btn-attend btn-absent" onclick="quickAttend('${escapeStr(row.teacher)}', '${escapeStr(row.student)}', '${row.day}', '${row.time}', 'غياب بدون عذر', ${idx})">تغيبت</button>
+              </div>
+              <div class="card-status-label" id="statusLabel_${idx}"></div>
+            `;
+            cardsList.appendChild(card);
           });
-          document.getElementById('resultsTable').style.display = 'table';
-          document.getElementById('fastFilter').style.display = 'block';
+          
+          resContainer.style.display = 'block';
         }
       } catch (err) {
         msg.style.color = '#c0392b'; msg.innerText = '❌ خطأ: ' + err.message;
       } finally { btn.disabled = false; }
     }
 
-    async function submitAttendance() {
-      const btn = document.getElementById('saveBtn');
-      const msg = document.getElementById('saveMessage');
-      const record = {
-        teacher: document.getElementById('logTeacher').value,
-        student: document.getElementById('logStudent').value,
-        day: document.getElementById('logDay').value,
-        time: document.getElementById('logTime').value,
-        status: document.getElementById('logStatus').value,
-        notes: document.getElementById('logNotes').value
-      };
+    function escapeStr(str) {
+      return (str || '').replace(/'/g, "\\'");
+    }
 
-      if (!record.teacher || !record.student || !record.time) {
-        msg.style.color = '#c0392b'; msg.innerText = 'يرجى تعبئة الحقول الأساسية.'; return;
-      }
-
-      btn.disabled = true; msg.style.color = '#333'; msg.innerText = '⏳ جاري الحفظ...';
+    // --- تسجيل الحضور السريع بضغطة زر ---
+    async function quickAttend(teacher, student, day, time, status, index) {
+      const actionsDiv = document.getElementById(`actions_${index}`);
+      const statusLabel = document.getElementById(`statusLabel_${index}`);
+      const card = document.getElementById(`card_${index}`);
+      
+      actionsDiv.style.opacity = '0.4';
+      actionsDiv.style.pointerEvents = 'none';
+      statusLabel.style.display = 'block';
+      statusLabel.style.color = '#555';
+      statusLabel.innerText = '⏳ جاري الحفظ...';
 
       try {
-        const res = await apiCall('saveAttendance', record);
-        msg.style.color = '#27ae60'; msg.innerText = res.message;
-        document.getElementById('logStudent').value = '';
-        document.getElementById('logTime').value = '';
-        document.getElementById('logNotes').value = '';
+        const record = { teacher, student, day, time, status, notes: '' };
+        await apiCall('saveAttendance', record);
+        
+        statusLabel.style.display = 'block';
+        if (status === 'حضور') {
+          statusLabel.style.color = '#198754';
+          statusLabel.innerText = '✔ تم تسجيل: حضرت';
+          card.style.borderColor = '#198754';
+        } else if (status === 'تأخير') {
+          statusLabel.style.color = '#e5a100';
+          statusLabel.innerText = '✔ تم تسجيل: تأخرت';
+          card.style.borderColor = '#e5a100';
+        } else {
+          statusLabel.style.color = '#dc3545';
+          statusLabel.innerText = '✔ تم تسجيل: تغيبت';
+          card.style.borderColor = '#dc3545';
+        }
       } catch (err) {
-        msg.style.color = '#c0392b'; msg.innerText = '❌ خطأ: ' + err.message;
-      } finally {
-        btn.disabled = false;
-        setTimeout(() => { if(msg.innerText === 'تم حفظ السجل بنجاح!') msg.innerText = ''; }, 4000);
+        statusLabel.style.color = '#dc3545';
+        statusLabel.innerText = '❌ فشل الحفظ: ' + err.message;
+        actionsDiv.style.opacity = '1';
+        actionsDiv.style.pointerEvents = 'auto';
       }
     }
 
-    // دالة المزامنة المحدثة لتحديث الزرين معاً وتفريغ الـ Cache
+    // --- وظيفة زر إعادة الضبط ---
+    function resetCardsView() {
+      document.getElementById('fastFilter').value = '';
+      const cards = document.querySelectorAll('.schedule-card');
+      cards.forEach(c => {
+        c.style.display = '';
+        c.style.borderColor = '#e2e8f0';
+        const actions = c.querySelector('.attendance-actions');
+        if (actions) {
+          actions.style.opacity = '1';
+          actions.style.pointerEvents = 'auto';
+        }
+        const statusLabel = c.querySelector('.card-status-label');
+        if (statusLabel) {
+          statusLabel.style.display = 'none';
+          statusLabel.innerText = '';
+        }
+      });
+    }
+
+    // --- فلترة البطاقات الفورية ---
+    function filterCards() {
+      const term = document.getElementById('fastFilter').value.trim().toLowerCase();
+      const cards = document.querySelectorAll('.schedule-card');
+      cards.forEach(card => {
+        const text = card.innerText.toLowerCase();
+        card.style.display = text.includes(term) ? '' : 'none';
+      });
+    }
+
+    // --- المزامنة وتحديث النظام ---
     async function triggerUpdate() {
-      const btns = [document.getElementById('updateDbBtn'), document.getElementById('updateDbBtnSearch')];
-      const statusTexts = [document.getElementById('updateStatus'), document.getElementById('updateStatusSearch')];
-      
-      btns.forEach(b => { if(b) b.disabled = true; });
-      statusTexts.forEach(s => { if(s) { s.style.color = '#333'; s.innerText = '⏳ جاري المزامنة...'; } });
+      const btn = document.getElementById('updateDbBtn');
+      const statusText = document.getElementById('updateStatus');
+      btn.disabled = true; statusText.style.color = '#333'; statusText.innerText = '⏳ جاري المزامنة من الشيت...';
 
       try {
         const res = await apiCall('updateMasterDB');
-        localStorage.removeItem('cachedTeachers'); // مسح الذاكرة المؤقتة لجلب الأسماء الجديدة
-        
-        statusTexts.forEach(s => { if(s) { s.style.color = '#27ae60'; s.innerText = res.message; } });
+        localStorage.removeItem('cachedTeachers');
+        statusText.style.color = '#198754'; statusText.innerText = res.message; 
         await loadTeachersData(true);
       } catch (err) {
-        statusTexts.forEach(s => { if(s) { s.style.color = '#c0392b'; s.innerText = '❌ خطأ: ' + err.message; } });
+        statusText.style.color = '#dc3545'; statusText.innerText = '❌ خطأ: ' + err.message;
       } finally {
-        btns.forEach(b => { if(b) b.disabled = false; });
-        setTimeout(() => { statusTexts.forEach(s => { if(s) s.innerText = ''; }); }, 5000);
+        btn.disabled = false;
+        setTimeout(() => { statusText.innerText = ''; }, 5000);
       }
     }
 
+    // --- جلب الإحصائيات ---
     async function loadStats() {
       const btn = document.getElementById('statsBtn');
       const msg = document.getElementById('statsMsg');
-      btn.disabled = true; msg.style.color = '#333'; msg.innerText = '⏳ جاري قراءة الجداول...';
+      btn.disabled = true; msg.style.color = '#333'; msg.innerText = '⏳ جاري القراءة...';
       
       try {
         const stats = await apiCall('getStatistics');
         document.getElementById('statTeachers').innerText = stats.teachers;
         document.getElementById('statStudents').innerText = stats.students;
         document.getElementById('statAttendance').innerText = stats.attendance;
-        
         document.getElementById('statsDisplay').style.display = 'flex';
         msg.innerText = '';
       } catch (err) {
-        msg.style.color = '#c0392b'; msg.innerText = '❌ خطأ: ' + err.message;
+        msg.style.color = '#dc3545'; msg.innerText = '❌ خطأ: ' + err.message;
       } finally {
         btn.disabled = false;
       }
